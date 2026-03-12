@@ -15,8 +15,7 @@ public class Main {
         ALL("1"),
         BY_ID("2"),
         STRONGEST("3"),
-        RELOAD_XML("4"),
-        EXIT("5");
+        EXIT("4");
 
         private final String value;
 
@@ -42,8 +41,7 @@ public class Main {
             System.out.println("1. Vypis vsetky zbrane");
             System.out.println("2. Vypis silu zbrane podla ID");
             System.out.println("3. Vypis najsilnejsiu zbran");
-            System.out.println("4. Znovu nacitaj XML");
-            System.out.println("5. Koniec");
+            System.out.println("4. Koniec");
             System.out.print("Vyber moznosti: ");
 
             String choice = scanner.nextLine();
@@ -57,20 +55,16 @@ public class Main {
 
             switch (option) {
                 case ALL:
-                    printAllWeapons();
+                    printAllWeapons();//strukturovany vypis celeho xml
                     break;
                 case BY_ID:
-                    printWeaponPowerById(scanner);
+                    printWeaponPowerById(scanner);//vypise jeden int podla zadaneho id
                     break;
                 case STRONGEST:
-                    printStrongestWeapon();
-                    break;
-                case RELOAD_XML:
-                    System.out.println("XML bolo znovu nacitane zo suboru.");
-                    printAllWeapons();
+                    printStrongestWeapon();//vypise zbran s najvysou power
                     break;
                 case EXIT:
-                    System.out.println("Program sa ukoncuje.");
+                    System.out.println("Program sa ukoncuje.");//riadne ukoncenie programu
                     return;
             }
         }
@@ -97,6 +91,8 @@ public class Main {
         Inventory inventory = loadInventory();
 
         System.out.println("\n=== ZOZNAM ZBRANI ===");
+
+        //for each loop na prechadzanie zbrani a ich atributov v inventary
         for (Weapon weapon : inventory.getWeapons()) {
             System.out.println(
                     "ID: " + weapon.getId() +
@@ -108,6 +104,7 @@ public class Main {
         }
     }
 
+    //tato method si do searchedId nacita id a v range-based cycle ho najde
     private static void printWeaponPowerById(Scanner scanner) {
         Inventory inventory = loadInventory();
 
@@ -124,6 +121,7 @@ public class Main {
         System.out.println("Zbran s tymto ID nebola najdena.");
     }
 
+    //metoda na najdenie najsilnejsej zbrane podla power
     private static void printStrongestWeapon() {
         Inventory inventory = loadInventory();
 
