@@ -2,16 +2,40 @@ package org.example;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.Unmarshaller;
 
-import java.io.InputStream;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.io.File;
 
 
+
 public class Main {
 
+
+    private enum MenuOption {
+        ALL("1"),
+        BY_ID("2"),
+        STRONGEST("3"),
+        RELOAD_XML("4"),
+        EXIT("5");
+
+        private final String value;
+
+        MenuOption(String value) {
+            this.value = value;
+        }
+
+        public static MenuOption fromInput(String input) {
+            for (MenuOption option : values()) {
+                if (option.value.equals(input)) {
+                    return option;
+                }
+            }
+            return null;
+        }
+    }
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in); // trieda na citanie vstupu od pouzivatela
 
         while (true) {
             System.out.println("\n=== RPG Inventory System ===");
@@ -24,38 +48,44 @@ public class Main {
 
             String choice = scanner.nextLine();
 
-            switch (choice) {
-                case "1":
+            MenuOption option = MenuOption.fromInput(choice);
+
+            if (option == null) {
+                System.out.println("Neplatna volba.");
+                continue;
+            }
+
+            switch (option) {
+                case ALL:
                     printAllWeapons();
                     break;
-                case "2":
+                case BY_ID:
                     printWeaponPowerById(scanner);
                     break;
-                case "3":
+                case STRONGEST:
                     printStrongestWeapon();
                     break;
-                case "4":
+                case RELOAD_XML:
                     System.out.println("XML bolo znovu nacitane zo suboru.");
                     printAllWeapons();
                     break;
-                case "5":
+                case EXIT:
                     System.out.println("Program sa ukoncuje.");
                     return;
-                default:
-                    System.out.println("Neplatna volba.");
             }
         }
     }
 
     private static Inventory loadInventory() {
         try {
+            // Vytvorenie JAXB kontextu pre triedu Inventory
             JAXBContext context = JAXBContext.newInstance(Inventory.class);
+
+            //deserializer xml
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
+            // Vytvorenie cesty k XML súboru podľa aktuálneho pracovného adresára
             File file = new File(System.getProperty("user.dir"), "skola/src/main/resources/items.xml");
-            System.out.println("user.dir = " + System.getProperty("user.dir"));
-            System.out.println("XML path = " + file.getAbsolutePath());
-            System.out.println("exists = " + file.exists());
 
             return (Inventory) unmarshaller.unmarshal(file);
         } catch (Exception e) {

@@ -28,41 +28,26 @@ public class Weapon {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getPower() {
         return power;
     }
 
-    public void setPower(int power) {
-        this.power = power;
-    }
 
     public double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
 
     public String getElement() {
         return element;
     }
 
-    public void setElement(String element) {
-        this.element = element;
-    }
 
     @Override
     public String toString() {

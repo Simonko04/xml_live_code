@@ -22,7 +22,4 @@ public class Inventory {
         return weapons;
     }
 
-    public void setWeapons(List<Weapon> weapons) {
-        this.weapons = weapons;
-    }
 }
