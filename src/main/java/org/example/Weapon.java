@@ -28,6 +28,25 @@ public class Weapon {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void setElement(String element) {
+        this.element = element;
+    }
 
     public String getName() {
         return name;
