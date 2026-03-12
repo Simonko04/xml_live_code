@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inventory>
+    <weapon>
+        <id>101</id>
+        <name>Iron Sword</name>
+        <power>15</power>
+        <weight>5.0</weight>
+        <element>none</element>
+    </weapon>
+    <weapon>
+        <id>102</id>
+        <name>Fire Staff</name>
+        <power>25</power>
+        <weight>3.0</weight>
+        <element>fire</element>
+    </weapon>
+    <weapon>
+        <id>103</id>
+        <name>Hunter Bow</name>
+        <power>18</power>
+        <weight>2.5</weight>
+        <element>none</element>
+    </weapon>
+</inventory>
