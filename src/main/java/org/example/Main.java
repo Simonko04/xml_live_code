@@ -11,7 +11,7 @@ import java.io.File;
 public class Main {
 
 
-    private enum MenuOption {
+    private enum MenuOption {//enum na najdenie moznosti z inputu
         ALL("1"),
         BY_ID("2"),
         STRONGEST("3"),
