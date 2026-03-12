@@ -5,6 +5,7 @@ import jakarta.xml.bind.Unmarshaller;
 import java.io.InputStream;
 import java.util.Comparator;
 import java.util.Scanner;
+import java.io.File;
 
 
 public class Main {
@@ -51,12 +52,12 @@ public class Main {
             JAXBContext context = JAXBContext.newInstance(Inventory.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
-            InputStream is = Main.class.getClassLoader().getResourceAsStream("items.xml");
-            if (is == null) {
-                throw new RuntimeException("Subor items.xml sa nenasiel v resources.");
-            }
+            File file = new File(System.getProperty("user.dir"), "skola/src/main/resources/items.xml");
+            System.out.println("user.dir = " + System.getProperty("user.dir"));
+            System.out.println("XML path = " + file.getAbsolutePath());
+            System.out.println("exists = " + file.exists());
 
-            return (Inventory) unmarshaller.unmarshal(is);
+            return (Inventory) unmarshaller.unmarshal(file);
         } catch (Exception e) {
             throw new RuntimeException("Chyba pri nacitani XML: " + e.getMessage(), e);
         }
